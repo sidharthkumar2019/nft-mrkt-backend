@@ -1,10 +1,5 @@
 service: nft-mrkt-backend
 
-custom:
-  NODE_ENV:
-    stage: staging
-    develop: development
-
 provider:
   name: aws
   runtime: nodejs14.x
@@ -13,8 +8,7 @@ provider:
   logs:
     httpApi: true
   environment:
-    NODE_ENV: ${self:custom.NODE_ENV.${self:provider.stage}}
-
+    JWT_SECRET_KEY: secretKey
   stage: ${opt:stage, 'develop'}
   region: ap-south-1
 
