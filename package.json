@@ -1,0 +1,23 @@
+{
+  "name": "nft-mrkt-backend",
+  "version": "1.0.0",
+  "description": "REST server for NFT marketplace.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "nft-marketplace"
+  ],
+  "author": "Sidharth",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "joi": "^17.6.0",
+    "nodemon": "^2.0.19"
+  }
+}

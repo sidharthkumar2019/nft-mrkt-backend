@@ -1,0 +1,10 @@
+node_modules/
+
+.serverless
+
+*.sh
+.env
+coverage
+
+.DS_Store
+*.csv
