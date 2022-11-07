@@ -2,8 +2,8 @@ const { Router } = require("express");
 
 const router = Router();
 
-const custom = require("../modules/custom/router");
+const routes = require("../modules/router");
 
-router.use("/custom", custom);
+router.use("/", routes);
 
 module.exports = router;
