@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(cors(corsOptions));
 app.disable("x-powered-by");
 
 app.use(express.json());
-
+app.use("/public", express.static(path.join(__dirname, "uploads")));
 app.use("/api/v1", require("./routes"));
 
 app.use((err, req, res, next) => {
