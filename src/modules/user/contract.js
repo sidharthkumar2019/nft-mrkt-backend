@@ -6,5 +6,5 @@ exports.create = Joi.object({
 });
 
 exports.login = Joi.object({
-  address: Joi.string().length(64).required(),
+  address: Joi.string().required(),
 });

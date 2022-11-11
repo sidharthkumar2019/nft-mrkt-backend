@@ -38,13 +38,20 @@ exports.login = async ({ body }) => {
       });
 
       await user.save();
+
+      return {
+        success: true,
+        status: 200,
+        data: { user },
+        message: "User created successfully.",
+      };
     }
 
     return {
       success: true,
       status: 200,
       data: { user },
-      message: "User created successfully.",
+      message: "Success.",
     };
   } catch (error) {
     console.log(error.message);
