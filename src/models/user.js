@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: "Dashboard",
     // },
-    collections: [{ type: mongoose.Schema.Types.ObjectId, ref: "Collection" }],
+    collections: [{ type: mongoose.Schema.Types.ObjectId, ref: "Collections" }],
   },
   { timestamps: true }
 );

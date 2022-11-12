@@ -8,3 +8,7 @@ exports.create = Joi.object({
 exports.login = Joi.object({
   address: Joi.string().required(),
 });
+
+exports.getAllItems = Joi.object({
+  userId: Joi.string().required(),
+});

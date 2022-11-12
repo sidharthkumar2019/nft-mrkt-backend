@@ -11,7 +11,7 @@ const itemSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
+      default: "na",
       trim: true,
     },
     imageLinks: [{ type: String, trim: true }],
@@ -23,14 +23,20 @@ const itemSchema = new mongoose.Schema(
         type: String,
       },
     },
-    owner: {
+    ownerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+    collectionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Collections",
+      required: true,
+    },
     price: {
       type: Number,
-      required: true,
+      default: 100,
+      // required: true,
     },
     bids: [
       {
