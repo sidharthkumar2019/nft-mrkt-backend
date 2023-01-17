@@ -30,7 +30,7 @@ const itemSchema = new mongoose.Schema(
     },
     collectionId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Collections",
+      ref: "Collection",
       required: true,
     },
     price: {

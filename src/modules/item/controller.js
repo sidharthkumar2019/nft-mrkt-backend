@@ -1,13 +1,13 @@
 const { messages } = require("../../utils/messages");
 const User = require("../../models/user");
-const Collections = require("../../models/collection");
+const Collection = require("../../models/collection");
 const Item = require("../../models/item");
 
 exports.create = async ({ body }) => {
   try {
-    const { ownerId, name, description, imageLinks } = body;
+    const { ownerId, collectionId, name, description, imageLinks } = body;
 
-    console.log({ ownerId, name, description, imageLinks });
+    console.log({ ownerId, collectionId, name, description, imageLinks });
 
     const user = await User.findById(ownerId);
     if (!user) {
@@ -18,24 +18,13 @@ exports.create = async ({ body }) => {
       };
     }
 
-    let collection;
-    if (user.collections.length === 0) {
-      console.log("No collection found");
-
-      const collectionBody = {
-        name: "Default Collection",
-        description: "The default collection",
-        ownerId: user._id,
+    let collection = await Collection.findById(collectionId);
+    if (!collection || collection.ownerId != ownerId) {
+      return {
+        success: false,
+        status: 400,
+        message: "Provide a valid collectionId.",
       };
-
-      collection = new Collections(collectionBody);
-      console.log({ collection });
-      await collection.save();
-
-      user.collections.push(collection._id);
-      await user.save();
-    } else {
-      collection = await Collections.findById(user.collections[0]);
     }
 
     // creating an item object
