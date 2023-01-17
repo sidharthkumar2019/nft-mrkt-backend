@@ -9,3 +9,7 @@ exports.create = Joi.object({
 exports.getAll = Joi.object({
   ownerId: Joi.string().required(),
 });
+
+exports.get = Joi.object({
+  collectionId: Joi.string().required(),
+});

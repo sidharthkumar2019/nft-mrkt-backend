@@ -40,6 +40,30 @@ exports.create = async ({ body }) => {
   }
 };
 
+exports.get = async ({ body }) => {
+  try {
+    const { collectionId } = body;
+
+    const collection = await Collection.findById(collectionId).populate(
+      "items"
+    );
+
+    return {
+      success: true,
+      status: 200,
+      data: collection,
+      message: "Collection fetched successfully.",
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
 exports.getAll = async ({ body }) => {
   try {
     const { ownerId } = body;
