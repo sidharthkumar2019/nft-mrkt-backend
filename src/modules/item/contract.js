@@ -7,3 +7,7 @@ exports.create = Joi.object({
   description: Joi.string().required(),
   imageLinks: Joi.array().items(Joi.string()),
 });
+
+exports.get = Joi.object({
+  itemId: Joi.string().required(),
+});

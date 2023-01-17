@@ -56,3 +56,32 @@ exports.create = async ({ body }) => {
     };
   }
 };
+
+exports.get = async ({ body }) => {
+  try {
+    const { itemId } = body;
+
+    const item = await Item.findById(itemId);
+    if (!item) {
+      return {
+        success: false,
+        status: 400,
+        message: "Something went wrong.",
+      };
+    }
+
+    return {
+      success: true,
+      status: 200,
+      data: item,
+      message: "Item fetched successfully.",
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
