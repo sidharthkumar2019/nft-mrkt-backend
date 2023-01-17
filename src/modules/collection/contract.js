@@ -5,3 +5,7 @@ exports.create = Joi.object({
   ownerId: Joi.string().required(),
   description: Joi.string().max(200),
 });
+
+exports.getAll = Joi.object({
+  ownerId: Joi.string().required(),
+});

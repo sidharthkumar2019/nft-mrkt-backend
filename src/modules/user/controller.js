@@ -1,6 +1,6 @@
 const { messages } = require("../../utils/messages");
 const User = require("../../models/user");
-const Collections = require("../../models/collection");
+const Collection = require("../../models/collection");
 
 exports.create = async ({ body }) => {
   try {
@@ -78,7 +78,7 @@ exports.getAllItems = async ({ body }) => {
     }
 
     const collections = await Promise.all(
-      user.collections.map((id) => Collections.findById(id).populate("items"))
+      user.collections.map((id) => Collection.findById(id).populate("items"))
     );
 
     return {
