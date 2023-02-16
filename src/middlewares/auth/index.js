@@ -1,10 +1,9 @@
-const checkCreator = (req, res, next) => {
+const { isCreator } = require("./utils");
+
+const checkCreator = async (req, res, next) => {
   try {
     const { walletAddress } = req.body;
-    let success = 1;
-    //
-    // add some verification code here
-    //
+    let success = await isCreator(walletAddress);
     if (success) {
       return next();
     } else {
