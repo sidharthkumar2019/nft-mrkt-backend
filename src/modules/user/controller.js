@@ -97,6 +97,40 @@ exports.getAllItems = async ({ body }) => {
   }
 };
 
+exports.getAllUsers = async ({ body }) => {
+  try {
+    let users = await User.find({});
+    if (!users) {
+      return {
+        success: true,
+        status: 400,
+        message: "Some error occurred.",
+      };
+    }
+
+    for (const user of users) {
+      const collections = await Promise.all(
+        user.collections.map((id) => Collection.findById(id).populate("items"))
+      );
+      user.collections = collections;
+    }
+
+    return {
+      success: true,
+      status: 200,
+      data: { users },
+      message: "Success.",
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
 exports.getUserById = (id) => User.findOne({ _id: id });
 exports.getUserByAddress = (address) =>
   User.findOne({ walletAddress: address });

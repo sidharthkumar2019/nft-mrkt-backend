@@ -10,5 +10,6 @@ userRouter.post("/create", validate(create), controller.create);
 userRouter.post("/login", validate(login), controller.login);
 
 userRouter.post("/getAllItems", validate(getAllItems), controller.getAllItems);
+userRouter.get("/getAllUsers", controller.getAllUsers);
 
 module.exports = userRouter;
