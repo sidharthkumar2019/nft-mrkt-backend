@@ -98,3 +98,5 @@ exports.getAllItems = async ({ body }) => {
 };
 
 exports.getUserById = (id) => User.findOne({ _id: id });
+exports.getUserByAddress = (address) =>
+  User.findOne({ walletAddress: address });

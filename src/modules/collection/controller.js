@@ -1,11 +1,11 @@
 const Collection = require("../../models/collection");
 const { messages } = require("../../utils/messages");
-const { getUserById } = require("../user/controller");
+const { getUserById, getUserByAddress } = require("../user/controller");
 
 exports.create = async ({ body }) => {
   try {
-    const { name, description, ownerId, contractAddress } = body;
-    const user = await getUserById(ownerId);
+    const { name, description, address, contractAddress } = body;
+    const user = await getUserByAddress(address);
     if (!user) {
       return {
         success: true,
@@ -17,7 +17,7 @@ exports.create = async ({ body }) => {
     const collection = new Collection({
       name,
       description,
-      ownerId,
+      ownerId: user._id,
       contractAddress,
     });
     await collection.save();
@@ -67,8 +67,8 @@ exports.get = async ({ body }) => {
 
 exports.getAll = async ({ body }) => {
   try {
-    const { ownerId } = body;
-    const user = await getUserById(ownerId);
+    const { address } = body;
+    const user = await getUserByAddress(address);
     if (!user) {
       return {
         success: true,
