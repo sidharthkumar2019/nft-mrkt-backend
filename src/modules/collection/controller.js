@@ -22,7 +22,6 @@ exports.create = async ({ body }) => {
     });
     await collection.save();
 
-    console.log({ collection });
     user.collections.push(collection._id);
     await user.save();
 
@@ -30,6 +29,7 @@ exports.create = async ({ body }) => {
       success: true,
       status: 201,
       message: "Collection created successfully.",
+      data: collection,
     };
   } catch (error) {
     console.log(error.message);

@@ -15,7 +15,7 @@ const collectionSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    collectionAddress: {
+    contractAddress: {
       type: String,
       required: true,
       trim: true,
