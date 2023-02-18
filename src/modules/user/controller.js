@@ -84,7 +84,7 @@ exports.getAllItems = async ({ body }) => {
     return {
       success: true,
       status: 200,
-      data: collections,
+      data: { user, collections },
       message: "Success.",
     };
   } catch (error) {
