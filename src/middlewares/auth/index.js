@@ -2,8 +2,8 @@ const { isCreator } = require("./utils");
 
 const checkCreator = async (req, res, next) => {
   try {
-    const { walletAddress } = req.body;
-    let success = await isCreator(walletAddress);
+    const { address } = req.body;
+    let success = await isCreator(address);
     if (success) {
       return next();
     } else {

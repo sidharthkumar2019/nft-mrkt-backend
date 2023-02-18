@@ -1,15 +1,11 @@
-const { messages } = require("../../utils/messages");
-const User = require("../../models/user");
-const Collection = require("../../models/collection");
 const Item = require("../../models/item");
+const { getCollectionByAddress } = require("../collection/controller");
+const { getUserByAddress } = require("../user/controller");
 
 exports.create = async ({ body }) => {
   try {
-    const { ownerId, collectionId, name, description, imageLinks } = body;
-
-    console.log({ ownerId, collectionId, name, description, imageLinks });
-
-    const user = await User.findById(ownerId);
+    const { address, contractAddress, name, description, imageLinks } = body;
+    const user = await getUserByAddress(address);
     if (!user) {
       return {
         success: false,
@@ -18,8 +14,8 @@ exports.create = async ({ body }) => {
       };
     }
 
-    let collection = await Collection.findById(collectionId);
-    if (!collection || collection.ownerId != ownerId) {
+    let collection = await getCollectionByAddress(contractAddress);
+    if (!collection || collection.ownerId != user._id) {
       return {
         success: false,
         status: 400,
@@ -33,7 +29,7 @@ exports.create = async ({ body }) => {
       description,
       imageLinks,
       collectionId: collection._id,
-      ownerId,
+      ownerId: user._id,
     };
 
     const item = new Item(itemBody);

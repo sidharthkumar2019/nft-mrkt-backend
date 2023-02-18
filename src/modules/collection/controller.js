@@ -96,3 +96,6 @@ exports.getAll = async ({ body }) => {
     };
   }
 };
+
+exports.getCollectionByAddress = (address) =>
+  Collection.findOne({ contractAddress: address });
