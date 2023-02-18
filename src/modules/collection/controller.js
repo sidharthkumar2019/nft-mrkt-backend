@@ -4,7 +4,7 @@ const { getUserById } = require("../user/controller");
 
 exports.create = async ({ body }) => {
   try {
-    const { name, description, ownerId } = body;
+    const { name, description, ownerId, contractAddress } = body;
     const user = await getUserById(ownerId);
     if (!user) {
       return {
@@ -18,6 +18,7 @@ exports.create = async ({ body }) => {
       name,
       description,
       ownerId,
+      contractAddress,
     });
     await collection.save();
 

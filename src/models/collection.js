@@ -15,6 +15,11 @@ const collectionSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    collectionAddress: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     items: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }],
     ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
