@@ -97,5 +97,30 @@ exports.getAll = async ({ body }) => {
   }
 };
 
+exports.getByAddress = async ({ body }) => {
+  try {
+    const { address } = body;
+    const collection = await Collection.findOne({
+      contractAddress: address,
+    }).populate("items");
+
+    return {
+      success: true,
+      status: 200,
+      data: collection,
+      message: "Collection fetched successfully.",
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
 exports.getCollectionByAddress = (address) =>
-  Collection.findOne({ contractAddress: address });
+  Collection.findOne({
+    contractAddress: address,
+  });

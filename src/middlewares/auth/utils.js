@@ -2,8 +2,21 @@ const { ethers } = require("ethers");
 
 const url =
   "https://polygon-mumbai.g.alchemy.com/v2/iZDtkSlQWHXN8af_yP2u2RuhBDrKzoDH";
-const address = "0xc7154e0be18b4449a91f9897a8a3e8816d5be487";
+const address = "0x2CE27d197722108333F4De0Cd3E891aDcCbA1409";
 const abi = [
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_addr",
+        type: "address",
+      },
+    ],
+    name: "add_whitelister",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
   {
     inputs: [],
     stateMutability: "nonpayable",
@@ -29,16 +42,16 @@ const abi = [
     type: "function",
   },
   {
-    inputs: [
+    inputs: [],
+    name: "owner",
+    outputs: [
       {
         internalType: "address",
-        name: "_add",
+        name: "",
         type: "address",
       },
     ],
-    name: "add_whitelister",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function",
   },
 ];

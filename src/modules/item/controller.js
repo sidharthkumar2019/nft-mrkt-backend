@@ -15,7 +15,7 @@ exports.create = async ({ body }) => {
     }
 
     let collection = await getCollectionByAddress(contractAddress);
-    if (!collection || collection.ownerId != user._id) {
+    if (!collection) {
       return {
         success: false,
         status: 400,
@@ -30,6 +30,8 @@ exports.create = async ({ body }) => {
       imageLinks,
       collectionId: collection._id,
       ownerId: user._id,
+      contractAddress,
+      ownerAddress: address,
     };
 
     const item = new Item(itemBody);
@@ -42,6 +44,7 @@ exports.create = async ({ body }) => {
       success: true,
       status: 201,
       message: "Item created successfully.",
+      data: item,
     };
   } catch (error) {
     console.log(error.message);

@@ -28,6 +28,14 @@ const itemSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    ownerAddress: {
+      type: String,
+      required: true,
+    },
+    contractAddress: {
+      type: String,
+      required: true,
+    },
     collectionId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Collection",

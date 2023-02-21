@@ -14,3 +14,7 @@ exports.getAll = Joi.object({
 exports.get = Joi.object({
   collectionId: Joi.string().required(),
 });
+
+exports.getByAddress = Joi.object({
+  address: Joi.string().required(),
+});
