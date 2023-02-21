@@ -9,6 +9,10 @@ exports.login = Joi.object({
   address: Joi.string().required(),
 });
 
+exports.get = Joi.object({
+  address: Joi.string().required(),
+});
+
 exports.getAllItems = Joi.object({
   userId: Joi.string().required(),
 });

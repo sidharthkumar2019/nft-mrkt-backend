@@ -28,6 +28,26 @@ exports.create = async ({ body }) => {
   }
 };
 
+exports.get = async ({ body }) => {
+  try {
+    const { address } = body;
+
+    let user = await User.findOne({ walletAddress: address });
+    return {
+      success: false,
+      status: 200,
+      data: { user },
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
 exports.login = async ({ body }) => {
   try {
     const { address } = body;
