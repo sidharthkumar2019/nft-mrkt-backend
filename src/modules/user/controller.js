@@ -31,10 +31,28 @@ exports.create = async ({ body }) => {
 exports.get = async ({ body }) => {
   try {
     const { address } = body;
-
-    let user = await User.findOne({ walletAddress: address });
+    let user = await this.getUserByAddress(address);
+    return {
+      success: true,
+      status: 200,
+      data: { user },
+    };
+  } catch (error) {
+    console.log(error.message);
     return {
       success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
+exports.getById = async ({ body }) => {
+  try {
+    const { userId } = body;
+    let user = await this.getUserById(userId);
+    return {
+      success: true,
       status: 200,
       data: { user },
     };

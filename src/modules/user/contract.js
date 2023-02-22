@@ -13,6 +13,10 @@ exports.get = Joi.object({
   address: Joi.string().required(),
 });
 
+exports.getById = Joi.object({
+  userId: Joi.string().required(),
+});
+
 exports.getAllItems = Joi.object({
   userId: Joi.string().required(),
 });
