@@ -28,6 +28,30 @@ exports.create = async ({ body }) => {
   }
 };
 
+exports.edit = async ({ body }) => {
+  try {
+    const { userId, userName, profilePic, backgroundPic } = body;
+
+    const filter = { _id: userId };
+    const update = { $set: { userName, profilePic, backgroundPic } };
+    const res = await User.updateOne(filter, update);
+    console.log(res);
+
+    return {
+      success: true,
+      status: 201,
+      message: "User updated successfully.",
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
 exports.get = async ({ body }) => {
   try {
     const { address } = body;
