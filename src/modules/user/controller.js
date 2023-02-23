@@ -169,6 +169,63 @@ exports.getAllUsers = async ({ body }) => {
   }
 };
 
+exports.growth = async () => {
+  try {
+    let data = await User.aggregate([
+      {
+        $group: {
+          _id: {
+            $dateToString: {
+              format: "%Y-%m-%d",
+              date: "$createdAt",
+            },
+          },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { _id: 1 },
+      },
+      {
+        $group: {
+          _id: null,
+          data: {
+            $push: {
+              date: "$_id",
+              count: "$count",
+            },
+          },
+        },
+      },
+      {
+        $unwind: "$data",
+      },
+      {
+        $group: {
+          _id: "$data.date",
+          count: { $sum: "$data.count" },
+        },
+      },
+      {
+        $sort: { _id: 1 },
+      },
+    ]);
+
+    return {
+      success: true,
+      status: 200,
+      data: { data },
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
 exports.getUserById = (id) => User.findOne({ _id: id });
 exports.getUserByAddress = (address) =>
   User.findOne({ walletAddress: address });

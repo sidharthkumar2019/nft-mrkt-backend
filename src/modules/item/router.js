@@ -10,4 +10,6 @@ const itemRouter = Router();
 itemRouter.post("/create", validate(create), checkCreator, controller.create);
 itemRouter.post("/get", validate(get), controller.get);
 
+itemRouter.get("/growth", controller.growth);
+
 module.exports = itemRouter;

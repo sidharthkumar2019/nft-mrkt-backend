@@ -13,5 +13,6 @@ userRouter.post("/getById", validate(getById), controller.getById);
 
 userRouter.post("/getAllItems", validate(getAllItems), controller.getAllItems);
 userRouter.get("/getAllUsers", controller.getAllUsers);
+userRouter.get("/growth", controller.growth);
 
 module.exports = userRouter;
