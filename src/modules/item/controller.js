@@ -4,7 +4,15 @@ const { getUserByAddress } = require("../user/controller");
 
 exports.create = async ({ body }) => {
   try {
-    const { address, contractAddress, name, description, imageLinks } = body;
+    const {
+      address,
+      contractAddress,
+      name,
+      description,
+      imageLinks,
+      tokenId,
+      finalUrl,
+    } = body;
     const user = await getUserByAddress(address);
     if (!user) {
       return {
@@ -32,6 +40,8 @@ exports.create = async ({ body }) => {
       ownerId: user._id,
       contractAddress,
       ownerAddress: address,
+      tokenId,
+      finalUrl,
     };
 
     const item = new Item(itemBody);

@@ -41,6 +41,8 @@ const itemSchema = new mongoose.Schema(
       ref: "Collection",
       required: true,
     },
+    tokenId: { type: String, required: true },
+    finalUrl: { type: String, required: true },
     price: {
       type: Number,
       default: 100,
