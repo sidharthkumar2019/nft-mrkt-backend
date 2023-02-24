@@ -2,6 +2,8 @@ const Item = require("../../models/item");
 const { getCollectionByAddress } = require("../collection/controller");
 const { getUserByAddress } = require("../user/controller");
 
+exports.getById = (id) => Item.findOne({ _id: id });
+
 exports.create = async ({ body }) => {
   try {
     const {

@@ -34,10 +34,7 @@ const userSchema = new mongoose.Schema(
         link: String,
       },
     ],
-    // dashboard: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Dashboard",
-    // },
+    received: [{ type: String }],
     collections: [{ type: mongoose.Schema.Types.ObjectId, ref: "Collection" }],
   },
   { timestamps: true }

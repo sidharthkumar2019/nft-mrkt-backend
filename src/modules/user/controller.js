@@ -71,6 +71,49 @@ exports.get = async ({ body }) => {
   }
 };
 
+exports.getReceived = async ({ body }) => {
+  try {
+    const { userId } = body;
+    let user = await this.getUserById(userId);
+    if (!user) {
+      return {
+        success: true,
+        status: 400,
+        messages: "User not found",
+      };
+    }
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
+exports.receive = async ({ body }) => {
+  try {
+    const { userAddress, itemId } = body;
+    const filter = { walletAddress: userAddress };
+    const update = { $push: { received: itemId } };
+
+    const res = await User.updateOne(filter, update);
+    return {
+      success: true,
+      status: 200,
+      data: { res },
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      success: false,
+      status: 500,
+      message: "Something went wrong.",
+    };
+  }
+};
+
 exports.getById = async ({ body }) => {
   try {
     const { userId } = body;

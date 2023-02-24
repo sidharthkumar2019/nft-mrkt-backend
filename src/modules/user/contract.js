@@ -20,3 +20,12 @@ exports.getById = Joi.object({
 exports.getAllItems = Joi.object({
   userId: Joi.string().required(),
 });
+
+exports.receive = Joi.object({
+  userAddress: Joi.string().required(),
+  itemId: Joi.string().required(),
+});
+
+exports.received = Joi.object({
+  userId: Joi.string().required(),
+});
